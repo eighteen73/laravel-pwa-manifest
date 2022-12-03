@@ -1,0 +1,37 @@
+{
+    "name": "eighteen73/laravel-pwa-manifest",
+    "description": "Generate favicons and a web app manifest for your Laravel app\n\n",
+    "keywords": ["laravel"],
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/eighteen73/laravel-pwa-manifest/issues",
+        "source": "https://github.com/eighteen73/laravel-pwa-manifest"
+    },
+    "authors": [
+        {
+            "name": "Ed Jeavons",
+            "email": "ed@orphans.co.uk"
+        }
+    ],
+    "require": {
+        "illuminate/support": "^9.0",
+        "intervention/image": "^2.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Eighteen73\\PwaManifest\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Eighteen73\\PwaManifest\\PwaManifestServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require-dev": {
+        "laravel/pint": "^1.2"
+    }
+}
