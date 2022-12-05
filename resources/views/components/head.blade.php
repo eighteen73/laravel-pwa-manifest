@@ -1,5 +1,6 @@
 <!-- Start of PWA -->
 {{ $slot }}
+@if($has_files)
 <link rel="icon" type="image/png" sizes="32x32" href="{{ $base_uri }}/icon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ $base_uri }}/icon-16.png">
 <link rel="manifest" href="{{ $base_uri }}/manifest.json" />
@@ -14,4 +15,5 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 --}}
+@endif
 <!-- End of PWA -->

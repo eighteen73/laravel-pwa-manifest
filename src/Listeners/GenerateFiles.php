@@ -136,7 +136,7 @@ class GenerateFiles implements ShouldQueue
     private function createIcons()
     {
         $source = config('pwa-manifest.icons.primary');
-        if (! File::exists($source)) {
+        if (! File::exists($source) || ! File::isFile($source)) {
             return;
         }
 
