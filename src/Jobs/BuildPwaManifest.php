@@ -33,7 +33,7 @@ class BuildPwaManifest implements ShouldQueue
 
             return;
         }
-        $this->cleanup(); // TODO cleanup after creating new files to prevent empty manifest for a second
+        $this->cleanup();
         $this->manifestScaffold();
         $this->createIcons();
         $this->writeManifest();
@@ -110,8 +110,12 @@ class BuildPwaManifest implements ShouldQueue
 
     private function cleanup()
     {
-        if (file_exists("{$this->rootPath}/manifest.json")) {
+        // Quickly re-add at least a usable manifest.json for sites to load in case images take a couple of seconds
+        $manifest_path = "{$this->rootPath}/manifest.json";
+        if (file_exists($manifest_path)) {
+            $manifest = File::get($manifest_path);
             File::cleanDirectory($this->rootPath);
+            File::put($manifest_path, $manifest);
         }
     }
 
