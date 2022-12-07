@@ -1,15 +1,20 @@
 <?php
 
-namespace Eighteen73\PwaManifest\Listeners;
+namespace Eighteen73\PwaManifest\Jobs;
 
-use Eighteen73\PwaManifest\Events\BuildPwaManifest;
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Intervention\Image\Facades\Image;
 
-class GenerateFiles implements ShouldQueue
+class BuildPwaManifest implements ShouldQueue
 {
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
     private string $rootPath;
 
     private string $rootUri;
@@ -18,9 +23,10 @@ class GenerateFiles implements ShouldQueue
 
     public function __construct()
     {
+        //
     }
 
-    public function handle(BuildPwaManifest $event)
+    public function handle()
     {
         if (! $this->getPaths()) {
             Log::error('Error building web manifest files');

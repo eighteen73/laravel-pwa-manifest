@@ -2,7 +2,7 @@
 
 namespace Eighteen73\PwaManifest\Console\Commands;
 
-use Eighteen73\PwaManifest\Events\BuildPwaManifest;
+use Eighteen73\PwaManifest\Jobs\BuildPwaManifest;
 use Illuminate\Console\Command;
 
 class BuildCommand extends Command
@@ -13,6 +13,6 @@ class BuildCommand extends Command
 
     public function handle()
     {
-        BuildPwaManifest::dispatch();
+        BuildPwaManifest::dispatchSync();
     }
 }

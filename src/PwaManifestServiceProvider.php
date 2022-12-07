@@ -3,8 +3,6 @@
 namespace Eighteen73\PwaManifest;
 
 use Eighteen73\PwaManifest\Console\Commands\BuildCommand;
-use Eighteen73\PwaManifest\Events\BuildPwaManifest;
-use Eighteen73\PwaManifest\Listeners\GenerateFiles;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
@@ -65,11 +63,6 @@ class PwaManifestServiceProvider extends ServiceProvider
      */
     protected function configureAssetBuilders()
     {
-        // Listen to our build event
-        Event::listen(BuildPwaManifest::class, [
-            GenerateFiles::class, 'handle',
-        ]);
-
         // Artisan command
         $this->commands([
             BuildCommand::class,
