@@ -17,7 +17,7 @@ class BuildPwaManifest implements ShouldQueue
 
     private string $rootPath;
 
-    private string $rootUri;
+    private string $publicPath;
 
     private array $manifest;
 
@@ -42,7 +42,7 @@ class BuildPwaManifest implements ShouldQueue
     private function getPaths(): bool
     {
         $this->rootPath = rtrim(config('pwa-manifest.root_path'), '/');
-        $this->rootUri = rtrim(config('pwa-manifest.root_uri'), '/');
+        $this->publicPath = rtrim(config('pwa-manifest.public_path'), '/');
 
         // Missing rootPath config
         if (empty($this->rootPath)) {
@@ -98,9 +98,9 @@ class BuildPwaManifest implements ShouldQueue
             return false;
         }
 
-        // Missing rootUri config
-        if (empty($this->rootUri)) {
-            Log::debug('Missing config "pwa-manifest.root_uri"');
+        // Missing publicPath config
+        if (empty($this->publicPath)) {
+            Log::debug('Missing config "pwa-manifest.public_path"');
 
             return false;
         }
@@ -125,12 +125,12 @@ class BuildPwaManifest implements ShouldQueue
             'background_color' => config('pwa-manifest.theme_color', '#ffffff'),
             'description' => config('pwa-manifest.description'),
             'display' => 'standalone',
-            'id' => config('app.url'),
+            'id' => config('pwa-manifest.url'),
             'name' => config('pwa-manifest.name'),
             'orientation' => 'any',
-            'scope' => config('app.url'),
+            'scope' => config('pwa-manifest.url'),
             'short_name' => config('pwa-manifest.short_name'),
-            'start_url' => config('app.url'),
+            'start_url' => config('pwa-manifest.url'),
             'theme_color' => config('pwa-manifest.theme_color', '#ffffff'),
         ];
 
@@ -192,7 +192,7 @@ class BuildPwaManifest implements ShouldQueue
             $img->reset()->resize($size, $size)->save("{$this->rootPath}/{$filename}");
         }
 
-        return "{$this->rootUri}/{$filename}";
+        return "{$this->publicPath}/{$filename}";
     }
 
     private function writeManifest()

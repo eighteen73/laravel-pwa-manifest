@@ -14,7 +14,7 @@ class Head extends Component
 
         return view('pwa-manifest::components.head', [
             'has_files' => File::exists(config('pwa-manifest.root_path').'/manifest.json'),
-            'base_uri' => config('pwa-manifest.root_uri'),
+            'base_uri' => config('pwa-manifest.public_path'),
             'name' => $name,
         ]);
     }

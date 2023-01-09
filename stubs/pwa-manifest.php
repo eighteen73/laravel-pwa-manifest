@@ -4,11 +4,23 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | URL
+    |--------------------------------------------------------------------------
+    |
+    | This is typically the APP_URL but if you are generating the files offline
+    | for upload it might be different.
+    |
+    */
+
+    'url' => env('APP_URL'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Root path
     |--------------------------------------------------------------------------
     |
     | This is where all generated files will be stored. It must be publicly
-    | accessible from the root_uri setting below.
+    | accessible from the public_path setting below.
     |
     | In most cases you will want to ignore this directory in the project's
     | Git repository.
@@ -29,7 +41,7 @@ return [
     |
     */
 
-    'root_uri' => env('APP_URL').'/pwa-manifest',
+    'public_path' => '/pwa-manifest',
 
     /*
     |--------------------------------------------------------------------------
